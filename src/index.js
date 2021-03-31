@@ -1,6 +1,7 @@
 const url = 'http://localhost:3000/users'
 const ulAnecdotes = document.querySelector('ul.anecdotes')     
 const ulMembers = document.querySelector('ul.members')
+const anecdoteForm = document.querySelector('form.anecdote-form')
 
 
 function renderHighLightedMember(familyMember){
@@ -19,9 +20,7 @@ function renderHighLightedMember(familyMember){
 
     ulAnecdotes.innerHTML = ''
 
-
-    // const anecdoteForm = document.querySelector('form.anecdote-form')
-    // anecdoteForm.dataset.id = familyMember.id
+    anecdoteForm.dataset.id = familyMember.id
     // anecdoteForm[0].value = familyMember.note
 
 }
@@ -38,9 +37,6 @@ fetch(`${url}/1`)
                 li.innerText = familyMember.name
                 li.dataset.id = familyMember.id
                 ulMembers.append(li)
-
-          
-    
           
     })
   })
@@ -63,3 +59,29 @@ fetch(`${url}/1`)
     }
 })
 
+anecdoteForm.addEventListener('submit', event => {
+    event.preventDefault()
+    console.log(event.target)
+    
+    const id = event.target.dataset.id
+    const newAnecdote = event.target[0].value
+    const li = document.createElement('li')
+    li.textContent = newAnecdote
+    li.dataset.id = id
+    // const deleteButton = document.createElement('button')
+    // deleteButton.textContent = 'X'
+    // li.append(deleteButton)
+    ulAnecdotes.append(li)
+
+    fetch(`http://localhost:3000/family_members/${id}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newAnecdote)
+    })
+    .then(response => response.json())
+    .then(anecdote => console.log(anecdote))
+
+    event.target.reset()
+})
