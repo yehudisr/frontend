@@ -9,7 +9,7 @@
   <body>
     <header>
       <h1>Family Tree</h1>
-      <nav> <h2>All My Family</h2>
+      <nav> 
         <ul>
           
         </ul>
@@ -17,22 +17,52 @@
     </header>
 
     <main>
+      <div class="all-members"> <h2>All My Family</h2>
+            <ul class="members">
+         
+            </ul>
+      </div>
       <div class="member-details">
+        <img src="https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg">
         <h2>Name goes here</h2>
         <p>Category goes here</p>
         <p>birthday goes here</p>
-        <img src="assets/image-placeholder.jpg">
-
        
 
         <h3>Anecdotes</h3>
         <ul class="anecdotes">
          
         </ul>
-        <form class="anecdote-form">
-            <textarea></textarea>
-            <input type="submit" value="Submit">
-          </form>
+            <form class="anecdote-form">
+                <textarea></textarea>
+                <input type="submit" value="Submit">
+            </form>
+
+            <form id="new-family-member-form">
+                <h4>Add New Family Member</h4>
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name">
+        
+                <label for="birthday">Birthday:</label>
+                <input type="date" id="birthday" name="birthday">
+        
+                <label for="photo">Photo </label>
+                <input type="text" name="photo" id="photo">
+        
+                <label for="category">Relationship</label>
+                <select id="category" name="category">
+                <option value="Mother">Mother</option>
+                <option value="Father">Father</option>
+                <option value="Sister">Sister</option>
+                <option value="Brother">Brother</option>
+                <option value="Husband">Husband</option>
+                <option value="Wife">Wife</option>
+                <option value="Grandmother">Grandmother</option>
+                <option value="Grandfather">Grandfather</option>
+                </select>
+        
+                <input type="submit" value="Add Family Member" />
+            </form>
       </div>
     </main>
   </body>
