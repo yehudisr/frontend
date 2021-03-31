@@ -7,20 +7,18 @@ body {
   }
   
   header {
-    float: left;
-    width: 225px;
+    /* float: left; */
+    width: auto;
     height: auto;
-    border-right: solid #404040 1px;
-    border-bottom: solid #404040 1px;
-    border-radius: 0 0 6px 0;
+    background-color: #91afc4;
     padding: 10px;
     margin-right: 10px;
   }
   
   h1 {
-    font-family: 'Great Vibes', cursive;
+    font-family: 'Helvetica';
     font-size: 52px;
-    color: #3493d5;
+    color: #26475e;
     margin: 10px 0;
   }
   
@@ -42,7 +40,7 @@ body {
   }
   
   nav ul li:hover {
-    background-color: #f1a458;
+    background-color: #1e4841;
     color: #fff;
   }
   
@@ -87,14 +85,14 @@ body {
     font-size: 16px;
     font-weight: 600;
     text-transform: uppercase;
-    background-color: #f1a458;
+    background-color: #98d2cc;
     color: #fff;
     padding: 7px 10px;
     cursor: pointer;
   }
   
   .anecdotes li {
-    background-color: #fff3a9;
+    background-color: #caf1f1;
     border-radius: 5px;
     padding: 20px;
     margin-bottom: 20px;
