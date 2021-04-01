@@ -3,6 +3,10 @@ const ulAnecdotes = document.querySelector('ul.anecdotes')
 const ulMembers = document.querySelector('ul.members')
 const anecdoteForm = document.querySelector('form.anecdote-form')
 const newMemberForm = document.querySelector('form#new-family-member-form')
+const updateMemberForm = document.querySelector('form#update-family-member-form')
+
+
+
 
 function renderHighLightedMember(familyMember){
  
@@ -21,7 +25,7 @@ function renderHighLightedMember(familyMember){
     ulAnecdotes.innerHTML = ''
 
     anecdoteForm.dataset.id = familyMember.id
-    
+    updateMemberForm.dataset.id = familyMember.id
 
 }
 
@@ -53,6 +57,9 @@ fetch(`${url}/1`)
                     const anecdoteLi = document.createElement('li')
                     anecdoteLi.dataset.id = anecdote.id
                     anecdoteLi.innerText = anecdote.note
+                    const deleteButton = document.createElement('button')
+                    deleteButton.textContent = 'X'
+                    anecdoteLi.append(deleteButton)
                     ulAnecdotes.append(anecdoteLi)
                    }) 
             })
@@ -67,11 +74,6 @@ anecdoteForm.addEventListener('submit', event => {
     const id = event.target.dataset.id
     const newAnecdote = event.target[0].value
    
-    
-    // const deleteButton = document.createElement('button')
-    // deleteButton.textContent = 'X'
-    // li.append(deleteButton)
-   
 
     fetch(`http://localhost:3000/family_members/${id}/anecdotes`, {
         method: 'POST',
@@ -85,6 +87,9 @@ anecdoteForm.addEventListener('submit', event => {
         const li = document.createElement('li')
         li.textContent = anecdote.note
         li.dataset.id = anecdote.family_member_id
+        const deleteButton = document.createElement('button')
+        deleteButton.textContent = 'X'
+        li.append(deleteButton)
         ulAnecdotes.append(li)
         })
 
@@ -116,4 +121,39 @@ newMemberForm.addEventListener('submit', event => {
     .then(familyMember => {
         renderHighLightedMember(familyMember)
         })
+})
+
+updateMemberForm.addEventListener('submit', event => {
+
+    event.preventDefault()
+    const updatedValues = {
+        name: event.target.name.value,
+        image: event.target.photo.value
+    }
+
+    fetch(`http://localhost:3000/family_members/${event.target.dataset.id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedValues)
+    })
+    .then(response => response.json())
+    .then(familyMember => {
+        renderHighLightedMember(familyMember)
+        })
+
+})
+
+ulAnecdotes.addEventListener('click', event => {
+    if (event.target.matches('button')){
+        const id = event.target.closest('li').dataset.id
+        fetch(`http://localhost:3000/anecdotes/${id}`, {
+            method: 'DELETE'
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+    }
+
+    
 })
