@@ -4,19 +4,20 @@ const ulMembers = document.querySelector('ul.members')
 const anecdoteForm = document.querySelector('form.anecdote-form')
 const newMemberForm = document.querySelector('form#new-family-member-form')
 const updateMemberForm = document.querySelector('form#update-family-member-form')
-
+const updateBtn = document.querySelector('button.btn.btn-light')
+const addButton = document.querySelector('button#new-family-member')
 
 
 
 function renderHighLightedMember(familyMember){
  
-    const h2 = document.querySelector('body > main > div.member-details > h2')
+    const h2 = document.querySelector('h2.card-title')
     h2.textContent = familyMember.name
 
     const memberImg = document.querySelector('img')
     memberImg.src = familyMember.image
     
-    const pCategory = document.querySelector('p.category')
+    const pCategory = document.querySelector('p.card-subtitle')
     pCategory.textContent = familyMember.category
 
     const pBirthday = document.querySelector('p.birthday')
@@ -40,7 +41,6 @@ fetch(`${url}/1`)
         li.innerText = familyMember.name
         li.dataset.id = familyMember.id
         ulMembers.append(li)
-  
           
     })
   })
@@ -123,6 +123,13 @@ newMemberForm.addEventListener('submit', event => {
         })
 })
 
+addButton.addEventListener('click', event =>{
+    console.log(event.target)
+    if(event.target.matches('button#new-family-member')){
+        newMemberForm.style.display = newMemberForm.style.display === 'block' ? 'none' : 'block'
+    }
+})
+
 updateMemberForm.addEventListener('submit', event => {
 
     event.preventDefault()
@@ -154,6 +161,9 @@ ulAnecdotes.addEventListener('click', event => {
         .then(response => response.json())
         .then(data => console.log(data))
     }
+})
 
-    
+
+updateBtn.addEventListener('click', event =>{
+    updateMemberForm.style.display = updateMemberForm.style.display === 'block' ? 'none' : 'block'
 })
