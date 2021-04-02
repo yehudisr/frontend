@@ -6,8 +6,9 @@ const newMemberForm = document.querySelector('form#new-family-member-form')
 const updateMemberForm = document.querySelector('form#update-family-member-form')
 const updateBtn = document.querySelector('#member-details > div.card-header-center > button')
 const addButton = document.querySelector('button#new-family-member')
+const loginForm = document.querySelector('form#login-form')
 
-
+// ################## RENDER FUNCTIONS ################## // 
 
 function renderHighLightedMember(familyMember) {
 
@@ -30,20 +31,35 @@ function renderHighLightedMember(familyMember) {
 
 }
 
+function navBarRender(familyMember){
+    const li = document.createElement('li')
+            li.innerText = familyMember.name
+            li.dataset.id = familyMember.id
+            ulMembers.append(li)
+
+}
 
 fetch(`${url}/1`)
     .then(response => response.json())
     .then(user => {
         renderHighLightedMember(user)
         newMemberForm.dataset.id = user.id
-        user.family_members.forEach(familyMember => {
-            const li = document.createElement('li')
-            li.innerText = familyMember.name
-            li.dataset.id = familyMember.id
-            ulMembers.append(li)
-
-        })
+        user.family_members.forEach(familyMember => navBarRender(familyMember))
     })
+
+function renderAnecdote(anecdote){
+        const anecdoteLi = document.createElement('li')
+                        anecdoteLi.dataset.id = anecdote.id
+                        anecdoteLi.innerText = anecdote.note
+                        anecdoteLi.classList.add('anecdote-li')
+                        const deleteButton = document.createElement('button')
+                        deleteButton.textContent = 'X'
+                        deleteButton.classList.add('anecdote-delete-button')
+                        anecdoteLi.append(deleteButton)
+                        ulAnecdotes.append(anecdoteLi)
+    }
+
+  // ################## EVENT LISTENERS ################## // 
 
 ulMembers.addEventListener('click', event => {
     if (event.target.matches('li')) {
@@ -60,24 +76,12 @@ ulMembers.addEventListener('click', event => {
     }
 })
 
-function renderAnecdote(anecdote){
-    const anecdoteLi = document.createElement('li')
-                    anecdoteLi.dataset.id = anecdote.id
-                    anecdoteLi.innerText = anecdote.note
-                    anecdoteLi.classList.add('anecdote-li')
-                    const deleteButton = document.createElement('button')
-                    deleteButton.textContent = 'X'
-                    deleteButton.classList.add('anecdote-delete-button')
-                    anecdoteLi.append(deleteButton)
-                    ulAnecdotes.append(anecdoteLi)
-}
 
 anecdoteForm.addEventListener('submit', event => {
     event.preventDefault()
 
     const id = event.target.dataset.id
     const newAnecdote = event.target[0].value
-
 
     fetch(`http://localhost:3000/family_members/${id}/anecdotes`, {
         method: 'POST',
@@ -102,7 +106,6 @@ newMemberForm.addEventListener('submit', event => {
     const category = event.target.category.value
     const user_id = event.target.dataset.id
 
-
     newMember = { name, birthday, image, category, user_id }
 
     fetch(`http://localhost:3000/family_members`, {
@@ -115,6 +118,8 @@ newMemberForm.addEventListener('submit', event => {
         .then(response => response.json())
         .then(familyMember => {
             renderHighLightedMember(familyMember)
+            navBarRender(familyMember)
+            newMemberForm.style.display = 'none'
         })
 
         event.target.reset()
@@ -142,7 +147,15 @@ updateMemberForm.addEventListener('submit', event => {
         body: JSON.stringify(updatedValues)
     })
         .then(response => response.json())
-        .then(familyMember => renderHighLightedMember(familyMember))
+        .then(familyMember => {
+            renderHighLightedMember(familyMember)
+            
+            familyMember.anecdotes.forEach(anecdote => {
+                renderAnecdote(anecdote)
+                updateMemberForm.style.display = 'none'
+        })
+    })
+    event.target.reset()
 
 })
 
@@ -159,12 +172,10 @@ ulAnecdotes.addEventListener('click', event => {
 
 
 updateBtn.addEventListener('click', event => {
-    console.log(event.target)
     updateMemberForm.style.display = updateMemberForm.style.display === 'block' ? 'none' : 'block'
 })
 
 
-const loginForm = document.querySelector('form#login-form')
 loginForm.addEventListener('submit', event => {
     event.preventDefault()
     loginForm.style.display = 'none' 
