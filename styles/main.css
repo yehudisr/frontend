@@ -1,18 +1,29 @@
+* {
+  margin:0;
+  padding: 0;
+  box-sizing:  border-box;
+}
+html, body {
+  height: 100%;
+  width: 100%;
+}
 body {
     box-sizing: border-box;
-    margin: 0;
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    color: #404040;
-  }
+}
+
+.main-wrapper {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 20% 1fr;
+  grid-template-rows: 1fr;
+}
   
   header {
-    /* float: left; */
-    width: auto;
-    height: auto;
     background-color: #91afc4;
     padding: 10px;
-    margin-right: 10px;
+    text-align: center;
   }
   
   h1 {
@@ -30,26 +41,23 @@ body {
     list-style: none;
   }
   
-  nav ul {
-    margin-left: 15px;
-  }
+
   
-  nav ul li {
-    padding: 5px;
-    cursor: pointer;
-  }
-  
-  nav ul li:hover {
-    background-color: #1e4841;
-    color: #fff;
-  }
-  
-  main {
-    float: left;
-    margin-left: 50px;
-    width: 600px;
-  }
-  
+
+
+.all-members {
+  background: #6da4cc;
+}
+ 
+.members > li {
+  padding: .7em .5em .5em .5em;
+  height: 50px;
+  cursor: pointer;
+}
+.members > li:hover {
+  background: #427faa;
+  transition: 0.5s all ease;
+}
   .member-details h2 {
     font-size: 32px;
     text-align: center;
@@ -59,6 +67,8 @@ body {
     font-size: 24px;
   }
   
+
+
   .member-details img {
     display: block;
     height: 200px;
@@ -109,7 +119,11 @@ body {
   max-width: 250px;
   
 }
-
+#sidebar > button {
+  margin-left: auto;
+  margin-right: auto;
+  margin: .5em;
+}
 #sidebar.active {
   margin-left: -250px;
 }
@@ -118,10 +132,6 @@ body {
   background: #6d7fcc;
 }
 
-#sidebar ul.components {
-  padding: 20px 0;
-  border-bottom: 1px solid #47748b;
-}
 
 #sidebar ul p {
   color: #fff;
@@ -148,7 +158,52 @@ ul ul a {
   background: #6d7fcc;
 }
 
-p.category {
- 
+/* 
+  user information
+*/
+.user-information {
+  padding: 1em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 40% 60%;
+  height: 100%;
+  width: 100%;
 }
-  
+.card-header-center {
+  padding: 2em;
+  text-align: right;
+}
+ .card-body {
+   grid-row: 1/2;
+   grid-column: 3/4;
+ }
+.anecdotes-container {
+  grid-column: 3/4;
+  grid-row: 2/3;
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+}
+.card-img-top {
+  max-width: 300px;
+  grid-row: 1/2;
+  grid-column:  1/2;
+}
+
+.anecdote-li {
+  position: relative;
+}
+.anecdote-delete-button {
+  position: absolute;
+  top: -10;
+  right: -5;
+  outline: none !important;
+  border: none;
+  height: 20px;
+  width: 20px;
+  font-size: 9px;
+  color: #fff;
+  background: #26475e;
+  padding: .5em;
+  border-radius: 50px;
+}

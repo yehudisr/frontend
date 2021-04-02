@@ -1,57 +1,71 @@
 <html>
+
 <head>
   <meta charset="UTF-8">
   <title>Family Tree</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Open+Sans:400,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="styles/main.css" />
   <script defer type="text/javascript" src="src/index.js"></script>
 </head>
-  <body>
-    <header>
-      <h1>Family Tree</h1>
-    </header>
 
-    <main>
-      <div class="all-members"> 
-            <div class="sidebar-header">
-              <h2>All My Family</h2>
-            </div>
-            <nav id = "sidebar">
-              <ul class="members list-unstyled components">
-         
-            </ul>
-          </nav>
+<body>
+  <header>
+    <h1>Family Tree</h1>
+  </header>
+
+  <main class='main-wrapper'>
+    <!-- 
+        all family member
+       -->
+    <div class="all-members">
+      <div class="sidebar-header">
+        <h2>All My Family</h2>
       </div>
-      <div id="member-details" class="card">
-        <div class="card-header">
-          <button type="button" class="btn btn-light">Update</button>
-          <button id="new-family-member" type="button" class="btn btn-light">Add New Family Member</button>
-        </div>
-        <div><form id="update-family-member-form" style="display: none;">
+      <nav id="sidebar">
+        <ul class="members list-unstyled components">
+
+        </ul>
+        <button id="new-family-member" type="button" class="btn btn-light">Add New Family Member</button>
+      </nav>
+    </div>
+    <!-- 
+        all family member end
+
+       -->
+
+    <div id="member-details" class="card">
+      <div class='card-header-center'>
+        <button type="button" class="btn btn-light">Update</button>
+
+      </div>
+      <div>
+        <form id="update-family-member-form" style="display: none;">
           <h4>Update Family Member</h4>
           <label for="name">Name</label>
           <input type="text" name="name" id="name">
-  
+
           <label for="photo">Photo </label>
           <input type="text" name="photo" id="photo">
 
           <input type="submit" value="Update Family Member" />
-        </form></div>
-        <div>
-          <form id="new-family-member-form" style="display: none;">
-            <h4>Add New Family Member</h4>
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name">
-    
-            <label for="birthday">Birthday:</label>
-            <input type="date" id="birthday" name="birthday">
-    
-            <label for="photo">Photo </label>
-            <input type="text" name="photo" id="photo">
-    
-            <label for="category">Relationship</label>
-            <select id="category" name="category">
+        </form>
+      </div>
+      <div>
+        <form id="new-family-member-form" style="display: none;">
+          <h4>Add New Family Member</h4>
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name">
+
+          <label for="birthday">Birthday:</label>
+          <input type="date" id="birthday" name="birthday">
+
+          <label for="photo">Photo </label>
+          <input type="text" name="photo" id="photo">
+
+          <label for="category">Relationship</label>
+          <select id="category" name="category">
             <option value="Mother">Mother</option>
             <option value="Father">Father</option>
             <option value="Sister">Sister</option>
@@ -60,39 +74,54 @@
             <option value="Wife">Wife</option>
             <option value="Grandmother">Grandmother</option>
             <option value="Grandfather">Grandfather</option>
-            </select>
-    
-            <input type="submit" value="Add Family Member" />
+          </select>
+
+          <input type="submit" value="Add Family Member" />
         </form>
-        </div>
-        <img class="card-img-top" src="https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg">
+      </div>
+      <div class='user-information'>
+
+        <img class="card-img-top"
+          src="https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg">
         <div class="card-body">
-        
-        <h2 class="card-title">Name goes here</h2>
-        <p class="card-subtitle mb-2 text-muted">Category goes here</p>
-        <p class="birthday">birthday goes here</p>
-        
-          
 
-        <h3>Anecdotes</h3>
-        <ul class="anecdotes">
-         
-        </ul>
-            <form class="anecdote-form">
-                <textarea></textarea>
-                <input type="submit" value="Add Anecdote">
-            </form>
+          <h2 class="card-title">Name goes here</h2>
+          <p class="card-subtitle mb-2 text-muted">Category goes here</p>
+          <p class="birthday">birthday goes here</p>
 
-           </div>
-            
-           <div>
 
-           
-            
-      
-    </main>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  </body>
+        </div>
+        <div class='anecdotes-container'>
+
+          <h3>Anecdotes</h3>
+          <ul class="anecdotes">
+  
+          </ul>
+          <form class="anecdote-form">
+            <textarea></textarea>
+            <input type="submit" value="Add Anecdote">
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
