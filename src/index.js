@@ -30,19 +30,6 @@ function renderHighLightedMember(familyMember) {
 
 }
 
-// function renderUser(user){
-//     const h2 = document.querySelector('h2.card-title')
-//     h2.textContent = user.name
-//     const memberImg = document.querySelector('img')
-//     memberImg.src = user.image
-//     const pCategory = document.querySelector('p.card-subtitle')
-//     pCategory.style.display = 'none'    
-//     const pBirthday = document.querySelector('p.birthday')
-//     pBirthday.textContent = user.birthday
-//     const divAnecdotes = document.querySelector('div.anecdotes-container')
-//     divAnecdotes.style.display = 'none'
-
-// }
 
 fetch(`${url}/1`)
     .then(response => response.json())
@@ -121,7 +108,7 @@ newMemberForm.addEventListener('submit', event => {
     const category = event.target.category.value
     const user_id = event.target.dataset.id
 
-
+   
 
     newMember = { name, birthday, image, category, user_id }
 
@@ -136,6 +123,8 @@ newMemberForm.addEventListener('submit', event => {
         .then(familyMember => {
             renderHighLightedMember(familyMember)
         })
+
+        event.target.reset()
 })
 
 addButton.addEventListener('click', event => {
@@ -173,7 +162,9 @@ ulAnecdotes.addEventListener('click', event => {
             method: 'DELETE'
         })
             .then(response => response.json())
-            .then(data => console.log(data))
+            .then(data => 
+                event.target.closest('li').remove()
+                )
     }
 })
 
@@ -181,4 +172,14 @@ ulAnecdotes.addEventListener('click', event => {
 updateBtn.addEventListener('click', event => {
     console.log(event.target)
     updateMemberForm.style.display = updateMemberForm.style.display === 'block' ? 'none' : 'block'
+})
+
+
+const loginForm = document.querySelector('form#login-form')
+loginForm.addEventListener('submit', event => {
+    event.preventDefault()
+    loginForm.style.display = 'none' 
+    const mainWrapper = document.querySelector('main.main-wrapper')
+    mainWrapper.style.display = 'flex'
+
 })

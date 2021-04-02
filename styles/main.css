@@ -163,3 +163,13 @@ div.all-members > div{
   padding: .5em;
   border-radius: 50px;
 }
+
+/* 
+  login
+*/
+
+div.login {
+padding: 40px;
+text-align: center;
+
+}

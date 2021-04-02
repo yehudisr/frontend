@@ -15,7 +15,15 @@
     <h1>Family Tree</h1>
   </header>
 
-  <main class='main-wrapper'>
+  <div class="login">
+    <form id="login-form" style="display: inline;">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name">
+    <input type="submit" value="Login" />
+  </form>
+  </div>
+
+  <main class='main-wrapper' style="display: none">
     <!-- 
         all family member
        -->
@@ -34,8 +42,8 @@
         all family member end
 
        -->
-
-    <div id="member-details" class="card">
+       
+    <div id="member-details" >
       <div class='card-header-center'>
         <button type="button" class="btn btn-light">Update</button>
 
