@@ -54,7 +54,14 @@ ulMembers.addEventListener('click', event => {
                 renderHighLightedMember(familyMember)
 
                 familyMember.anecdotes.forEach(anecdote => {
-                    const anecdoteLi = document.createElement('li')
+                    renderAnecdote(anecdote)
+                })
+            })
+    }
+})
+
+function renderAnecdote(anecdote){
+    const anecdoteLi = document.createElement('li')
                     anecdoteLi.dataset.id = anecdote.id
                     anecdoteLi.innerText = anecdote.note
                     anecdoteLi.classList.add('anecdote-li')
@@ -63,12 +70,7 @@ ulMembers.addEventListener('click', event => {
                     deleteButton.classList.add('anecdote-delete-button')
                     anecdoteLi.append(deleteButton)
                     ulAnecdotes.append(anecdoteLi)
-                })
-            })
-    }
-})
-
-
+}
 
 anecdoteForm.addEventListener('submit', event => {
     event.preventDefault()
@@ -85,15 +87,7 @@ anecdoteForm.addEventListener('submit', event => {
         body: JSON.stringify({ note: newAnecdote, family_member_id: id })
     })
         .then(response => response.json())
-        .then(anecdote => {
-            const li = document.createElement('li')
-            li.textContent = anecdote.note
-            li.dataset.id = anecdote.family_member_id
-            const deleteButton = document.createElement('button')
-            deleteButton.textContent = 'X'
-            li.append(deleteButton)
-            ulAnecdotes.append(li)
-        })
+        .then(anecdote => renderAnecdote(anecdote))
 
     event.target.reset()
 })
@@ -108,7 +102,6 @@ newMemberForm.addEventListener('submit', event => {
     const category = event.target.category.value
     const user_id = event.target.dataset.id
 
-   
 
     newMember = { name, birthday, image, category, user_id }
 
@@ -149,9 +142,7 @@ updateMemberForm.addEventListener('submit', event => {
         body: JSON.stringify(updatedValues)
     })
         .then(response => response.json())
-        .then(familyMember => {
-            renderHighLightedMember(familyMember)
-        })
+        .then(familyMember => renderHighLightedMember(familyMember))
 
 })
 
@@ -162,9 +153,7 @@ ulAnecdotes.addEventListener('click', event => {
             method: 'DELETE'
         })
             .then(response => response.json())
-            .then(data => 
-                event.target.closest('li').remove()
-                )
+            .then(data =>  event.target.closest('li').remove())
     }
 })
 
