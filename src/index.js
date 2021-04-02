@@ -30,6 +30,19 @@ function renderHighLightedMember(familyMember) {
 
 }
 
+// function renderUser(user){
+//     const h2 = document.querySelector('h2.card-title')
+//     h2.textContent = user.name
+//     const memberImg = document.querySelector('img')
+//     memberImg.src = user.image
+//     const pCategory = document.querySelector('p.card-subtitle')
+//     pCategory.style.display = 'none'    
+//     const pBirthday = document.querySelector('p.birthday')
+//     pBirthday.textContent = user.birthday
+//     const divAnecdotes = document.querySelector('div.anecdotes-container')
+//     divAnecdotes.style.display = 'none'
+
+// }
 
 fetch(`${url}/1`)
     .then(response => response.json())
