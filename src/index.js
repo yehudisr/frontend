@@ -4,7 +4,7 @@ const ulMembers = document.querySelector('ul.members')
 const anecdoteForm = document.querySelector('form.anecdote-form')
 const newMemberForm = document.querySelector('form#new-family-member-form')
 const updateMemberForm = document.querySelector('form#update-family-member-form')
-const updateBtn = document.querySelector('button.btn.btn-light')
+const updateBtn = document.querySelector('#member-details > div.card-header-center > button')
 const addButton = document.querySelector('button#new-family-member')
 
 
@@ -166,5 +166,6 @@ ulAnecdotes.addEventListener('click', event => {
 
 
 updateBtn.addEventListener('click', event => {
+    console.log(event.target)
     updateMemberForm.style.display = updateMemberForm.style.display === 'block' ? 'none' : 'block'
 })
